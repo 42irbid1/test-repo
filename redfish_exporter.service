@@ -1,0 +1,21 @@
+[Unit]
+Description=Redfish Exporter
+After=network-online.target
+StartLimitInterval=0
+
+[Service]
+Type=simple
+User=prometheus
+Group=prometheus
+Environment="PYTHONPATH=/var/lib/redfish-exporter"
+ExecStart=/var/lib/redfish-exporter/venv/bin/python -m redfish_exporter \
+	--config /var/lib/redfish-exporter/config.yaml \
+	--port 9091 \
+	--ip 127.0.0.1
+
+SyslogIdentifier=redfish_exporter
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

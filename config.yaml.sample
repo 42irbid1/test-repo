@@ -1,0 +1,8 @@
+hosts:
+    10.10.10.10:
+        name: idrac-name
+        username: user
+        password: password
+        proto: https
+        version: idrac8
+        verify: False
